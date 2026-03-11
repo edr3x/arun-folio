@@ -1,12 +1,293 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Folio</title>
-  </head>
-  <body>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arun Dhungana | HR & Operations Manager</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #0f0f0f;
+    --card: #1a1a1a;
+    --border: #2a2a2a;
+    --accent: #6366f1;
+    --accent2: #818cf8;
+    --text: #e4e4e7;
+    --muted: #a1a1aa;
+    --white: #fafafa;
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+  }
+
+  a { color: var(--accent2); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* Hero */
+  .hero {
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 80px 24px 60px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(99,102,241,.15), transparent 70%);
+    top: -200px; left: 50%; transform: translateX(-50%);
+    pointer-events: none;
+  }
+
+  .hero-content { position: relative; max-width: 680px; }
+
+  .avatar {
+    width: 100px; height: 100px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), #a78bfa);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 38px; font-weight: 700; color: #fff;
+    margin: 0 auto 28px;
+    box-shadow: 0 0 40px rgba(99,102,241,.3);
+  }
+
+  h1 { font-size: 2.6rem; font-weight: 700; color: var(--white); letter-spacing: -0.5px; }
+  .tagline { font-size: 1.1rem; color: var(--muted); margin-top: 12px; max-width: 520px; margin-inline: auto; }
+
+  .contact-row {
+    margin-top: 28px;
+    display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;
+    font-size: .9rem; color: var(--muted);
+  }
+  .contact-row span::before { content: ''; display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); margin-right: 8px; vertical-align: middle; }
+
+  /* Sections */
+  .container { max-width: 800px; margin: 0 auto; padding: 0 24px 80px; }
+
+  section { margin-bottom: 56px; }
+
+  .section-label {
+    font-size: .75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 2px;
+    color: var(--accent2); margin-bottom: 24px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+  /* Summary */
+  .summary { font-size: 1rem; color: var(--muted); line-height: 1.8; }
+
+  /* Timeline */
+  .timeline { position: relative; padding-left: 28px; }
+  .timeline::before {
+    content: ''; position: absolute; left: 5px; top: 8px; bottom: 8px;
+    width: 1px; background: var(--border);
+  }
+
+  .tl-item { margin-bottom: 36px; position: relative; }
+  .tl-item::before {
+    content: ''; position: absolute; left: -25px; top: 8px;
+    width: 9px; height: 9px; border-radius: 50%;
+    background: var(--accent); border: 2px solid var(--bg);
+    box-shadow: 0 0 0 3px var(--border);
+  }
+  .tl-item:first-child::before { background: #22c55e; box-shadow: 0 0 0 3px rgba(34,197,94,.2); }
+
+  .tl-company { font-size: 1.05rem; font-weight: 600; color: var(--white); }
+  .tl-role { font-size: .95rem; color: var(--accent2); margin-top: 2px; }
+  .tl-meta { font-size: .8rem; color: var(--muted); margin-top: 4px; }
+  .tl-desc { font-size: .88rem; color: var(--muted); margin-top: 10px; line-height: 1.7; }
+
+  /* Skills / Tags */
+  .tags { display: flex; flex-wrap: wrap; gap: 10px; }
+  .tag {
+    padding: 6px 16px; border-radius: 20px; font-size: .82rem; font-weight: 500;
+    background: rgba(99,102,241,.1); border: 1px solid rgba(99,102,241,.2); color: var(--accent2);
+  }
+
+  /* Education */
+  .edu-item { padding: 16px 20px; background: var(--card); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 12px; }
+  .edu-school { font-weight: 600; color: var(--white); font-size: .95rem; }
+  .edu-degree { font-size: .85rem; color: var(--muted); margin-top: 2px; }
+  .edu-year { font-size: .78rem; color: var(--muted); margin-top: 2px; }
+
+  /* Languages */
+  .lang-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 12px; }
+  .lang-item { padding: 14px 18px; background: var(--card); border: 1px solid var(--border); border-radius: 10px; }
+  .lang-name { font-weight: 600; color: var(--white); font-size: .9rem; }
+  .lang-level { font-size: .78rem; color: var(--muted); margin-top: 2px; }
+
+  /* Awards */
+  .awards-list { display: flex; flex-wrap: wrap; gap: 10px; }
+  .award {
+    padding: 8px 16px; border-radius: 8px; font-size: .82rem;
+    background: rgba(234,179,8,.06); border: 1px solid rgba(234,179,8,.15); color: #fbbf24;
+  }
+  .award::before { content: '★ '; }
+
+  /* Footer */
+  footer { text-align: center; padding: 40px 24px; font-size: .8rem; color: var(--muted); border-top: 1px solid var(--border); }
+
+  @media (max-width: 600px) {
+    h1 { font-size: 1.8rem; }
+    .hero { min-height: 50vh; padding: 60px 20px 40px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-content">
+    <div class="avatar">AD</div>
     <h1>Arun Dhungana</h1>
-  </body>
+    <p class="tagline">HR & Operations Manager driving organizational growth and employee success through strategic talent management and operational excellence.</p>
+    <div class="contact-row">
+      <span>Kathmandu, Nepal</span>
+      <span>9844639944</span>
+      <span><a href="https://www.linkedin.com/in/arundhungana" target="_blank">LinkedIn</a></span>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+
+  <!-- Summary -->
+  <section>
+    <div class="section-label">About</div>
+    <p class="summary">HR & Operations Manager at Kumari Job with over 8 years of experience in human resources leadership, operations management, and employee training. Focused on developing and implementing HR policies, managing the employee lifecycle, and optimizing workflows to support organizational goals. Committed to cultivating a positive and productive work environment by empowering teams to achieve their potential.</p>
+  </section>
+
+  <!-- Experience -->
+  <section>
+    <div class="section-label">Experience</div>
+    <div class="timeline">
+
+      <div class="tl-item">
+        <div class="tl-company">Kumari Job</div>
+        <div class="tl-role">HR & Operations Manager</div>
+        <div class="tl-meta">Sep 2023 – Present · Kathmandu</div>
+        <div class="tl-desc">Leading HR policy development and implementation aligned with organizational goals. Managing the full employee life cycle from recruitment through onboarding. Overseeing daily operations, collaborating with department heads to optimize workflows, and designing impactful training programs.</div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-company">Urja Developers Pvt. Ltd.</div>
+        <div class="tl-role">Assistant Manager Human Resources</div>
+        <div class="tl-meta">Jan 2023 – Feb 2024 · Lalitpur, Nepal</div>
+        <div class="tl-desc">Managed day-to-day HR operations, payroll preparation, recruitment process improvements, and employee records. Implemented new sourcing strategies and managed procurement practices in line with company policy.</div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-company">Doosan Bobcat Nepal</div>
+        <div class="tl-role">Assistant Manager Human Resources</div>
+        <div class="tl-meta">Aug 2022 – Jan 2023 · Kathmandu</div>
+        <div class="tl-desc">Developed compensation and benefits programs, managed HRIS, payroll, SSF, and insurance programs. Monitored administrative costs and recommended cost containment strategies.</div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-company">Rolling Plans Pvt. Ltd.</div>
+        <div class="tl-role">Assistant Manager HR → Sr. Officer → Supervisor → Sr. Ops Supervisor → Peer Mentor → CSR</div>
+        <div class="tl-meta">Dec 2016 – Aug 2022 · Kathmandu</div>
+        <div class="tl-desc">Progressed through six roles over nearly six years — from customer service representative to assistant manager. Led recruitment teams, managed operations for Ncell, coached and mentored staff, and drove process improvements across HR and operations.</div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-company">Shaping Minds Pvt. Ltd.</div>
+        <div class="tl-role">Customer's Associates</div>
+        <div class="tl-meta">Mar 2015 – Oct 2016 · Kathmandu</div>
+        <div class="tl-desc">First point of contact for clients on staffing needs. Coordinated recruitment, onboarding, attendance tracking, and payroll while maintaining strong client relationships.</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section>
+    <div class="section-label">Core Skills</div>
+    <div class="tags">
+      <span class="tag">Employee Training</span>
+      <span class="tag">Talent Acquisition</span>
+      <span class="tag">HR Policy Development</span>
+      <span class="tag">Operations Management</span>
+      <span class="tag">Payroll & Benefits</span>
+      <span class="tag">Performance Management</span>
+      <span class="tag">Recruitment Strategy</span>
+      <span class="tag">Employee Relations</span>
+      <span class="tag">HRIS Management</span>
+      <span class="tag">Soft Skills</span>
+      <span class="tag">Microsoft Excel</span>
+      <span class="tag">Compliance</span>
+    </div>
+  </section>
+
+  <!-- Education -->
+  <section>
+    <div class="section-label">Education</div>
+    <div class="edu-item">
+      <div class="edu-school">Phoenix College of Management / Lincoln University College</div>
+      <div class="edu-degree">MBA – Human Resources Management & Business Administration</div>
+      <div class="edu-year">2021 – 2023</div>
+    </div>
+    <div class="edu-item">
+      <div class="edu-school">K & K International College</div>
+      <div class="edu-degree">Bachelor's Degree – Psychology</div>
+      <div class="edu-year">2018 – 2021</div>
+    </div>
+    <div class="edu-item">
+      <div class="edu-school">Gauradaha Multiple Campus</div>
+      <div class="edu-degree">High School – Science</div>
+      <div class="edu-year">2012 – 2015</div>
+    </div>
+  </section>
+
+  <!-- Languages -->
+  <section>
+    <div class="section-label">Languages</div>
+    <div class="lang-grid">
+      <div class="lang-item"><div class="lang-name">Nepali</div><div class="lang-level">Native / Bilingual</div></div>
+      <div class="lang-item"><div class="lang-name">English</div><div class="lang-level">Full Professional</div></div>
+      <div class="lang-item"><div class="lang-name">Hindi</div><div class="lang-level">Professional Working</div></div>
+      <div class="lang-item"><div class="lang-name">French</div><div class="lang-level">Limited Working</div></div>
+      <div class="lang-item"><div class="lang-name">Spanish</div><div class="lang-level">Elementary</div></div>
+    </div>
+  </section>
+
+  <!-- Certifications -->
+  <section>
+    <div class="section-label">Certifications</div>
+    <div class="tags">
+      <span class="tag">Strategic Human Resource Management</span>
+      <span class="tag">HR Analytics – Pivot Tables in Excel</span>
+      <span class="tag">Talent Acquisition</span>
+    </div>
+  </section>
+
+  <!-- Awards -->
+  <section>
+    <div class="section-label">Awards & Recognition</div>
+    <div class="awards-list">
+      <span class="award">Promoted to Mentor</span>
+      <span class="award">Promoted to Supervisor</span>
+      <span class="award">Best Quantity of Year</span>
+      <span class="award">Employee of the Month (×2)</span>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <p>Arun Dhungana · Kathmandu, Nepal · <a href="https://www.linkedin.com/in/arundhungana">linkedin.com/in/arundhungana</a></p>
+</footer>
+
+</body>
 </html>
